@@ -1,0 +1,14 @@
+from google.colab import files
+from google.colab.patches import cv2_imshow
+import cv2
+import numpy as np
+
+uploaded = files.upload()
+
+image = cv2.imdecode(np.frombuffer(list(uploaded.values())[0], np.uint8), 1)
+
+small = cv2.resize(image, (300, 200))
+gray = cv2.cvtColor(small, cv2.COLOR_BGR2GRAY)
+
+cv2_imshow(small)
+cv2_imshow(gray)
