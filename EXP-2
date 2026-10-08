@@ -1,0 +1,14 @@
+from google.colab import files
+from google.colab.patches import cv2_imshow
+import cv2
+import numpy as np
+
+uploaded = files.upload()
+
+image = cv2.imdecode(np.frombuffer(list(uploaded.values())[0], np.uint8), 1)
+
+image = cv2.resize(image, (300, 200))
+blur = cv2.GaussianBlur(image, (5, 5), 0)
+
+cv2_imshow(image)
+cv2_imshow(blur)
